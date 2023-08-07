@@ -1,5 +1,8 @@
-import { StatusBar } from "expo-status-bar";
+// Wir importieren Komponenten aus externen Packages, um sie weiter unten benutzen zu können
+
 import { StyleSheet, Text, View } from "react-native";
+
+// Die Liste unserer Events
 
 const events = [
   {
@@ -12,11 +15,31 @@ const events = [
     location: "Halle",
     numPlayers: 12,
   },
+  {
+    title: "Tennis",
+    location: "Halle",
+    numPlayers: 2,
+  },
+  {
+    title: "Golf",
+    location: "Course",
+    numPlayers: 4,
+  },
 ];
+
+// Eine Komponente, die dazu dient, ein einzelnes Event zu "rendern"
 
 function MyEvent({ title, location, numPlayers }) {
   return (
-    <View style={{ backgroundColor: "lightblue" }}>
+    <View
+      style={{
+        backgroundColor: "lightblue",
+        padding: 12,
+        margin: 12,
+        width: "100%",
+        borderRadius: 6,
+      }}
+    >
       <Text style={{ fontWeight: "bold" }}>{title}</Text>
       <Text>{location}</Text>
       <Text>Anzahl der Spieler: {numPlayers}</Text>
@@ -24,21 +47,22 @@ function MyEvent({ title, location, numPlayers }) {
   );
 }
 
+// Einstiegspunkt der App => wird von React native beim Start aufgerufen
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>{events[0].title}</Text>
-      <Text>{events[0].location}</Text>
-      <Text>{events[0].numPlayers}</Text>
-      <Text>{events[1].title}</Text>
-      <Text>{events[1].location}</Text>
-      <Text>{events[1].numPlayers}</Text>
-
-      <MyEvent title="TestTitle" location="TestLocation" numPlayers={5} />
-      <MyEvent title="TestTitle" location="TestLocation" numPlayers={5} />
-      <MyEvent title="TestTitle" location="TestLocation" numPlayers={5} />
-
-      <StatusBar style="auto" />
+      {/* Wir iterieren über unsere Events und erzeugen für jedes einzelne Event eine Instanz der MyEvent Komponente */}
+      {events.map((event, index) => {
+        console.log("Map Callback aufgerufen mit Event Nr.: " + index);
+        return (
+          <MyEvent
+            title={event.title}
+            location={event.location}
+            numPlayers={event.numPlayers}
+          />
+        );
+      })}
     </View>
   );
 }
@@ -49,5 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    padding: 24,
   },
 });
