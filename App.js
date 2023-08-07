@@ -44,7 +44,7 @@ function MyEvent({ title, location, numPlayers }) {
         borderRadius: 6,
       }}
     >
-      <Text style={{ fontWeight: "bold" }}>{title}</Text>
+      <Text style={{ fontWeight: "bold", fontSize: 18 }}>{title}</Text>
       <Text>{location}</Text>
       <Text>Anzahl der Spieler: {numPlayers}</Text>
     </View>
