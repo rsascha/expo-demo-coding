@@ -2,25 +2,29 @@
 
 import { StyleSheet, Text, View } from "react-native";
 
-// Die Liste unserer Events
+// Die Liste unserer Events => Array mit Objekten
 
 const events = [
   {
+    id: "1",
     title: "Fußball",
     location: "Stadion",
     numPlayers: 22,
   },
   {
+    id: "2",
     title: "Volleyball",
     location: "Halle",
     numPlayers: 12,
   },
   {
+    id: "3",
     title: "Tennis",
     location: "Halle",
     numPlayers: 2,
   },
   {
+    id: "4",
     title: "Golf",
     location: "Course",
     numPlayers: 4,
@@ -57,6 +61,7 @@ export default function App() {
         console.log("Map Callback aufgerufen mit Event Nr.: " + index);
         return (
           <MyEvent
+            key={event.id}
             title={event.title}
             location={event.location}
             numPlayers={event.numPlayers}
