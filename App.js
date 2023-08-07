@@ -1,6 +1,7 @@
 // Wir importieren Komponenten aus externen Packages, um sie weiter unten benutzen zu können
 
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
+import { useState } from "react";
 
 // Die Liste unserer Events => Array mit Objekten
 
@@ -54,8 +55,18 @@ function MyEvent({ title, location, numPlayers }) {
 // Einstiegspunkt der App => wird von React native beim Start aufgerufen
 
 export default function App() {
+  const [counter, setCounter] = useState(0);
+
   return (
     <View style={styles.container}>
+      <Text>{counter}</Text>
+      <Button
+        onPress={() => {
+          setCounter(counter + 1);
+        }}
+        title="Increase Counter"
+      />
+
       {/* Wir iterieren über unsere Events und erzeugen für jedes einzelne Event eine Instanz der MyEvent Komponente */}
       {events.map((event, index) => {
         console.log("Map Callback aufgerufen mit Event Nr.: " + index);
